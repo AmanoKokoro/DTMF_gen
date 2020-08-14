@@ -1,7 +1,7 @@
 //VisualStudio�΍�i���w�萔�̎g�p������
 //#define _USE_MATH_DEFINES
 
-#include"wave.h"
+#include"src/wave.h"
 #include<stdlib.h>
 #include<stdio.h>
 #include<math.h>
