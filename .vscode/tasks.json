@@ -2,19 +2,12 @@
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
     "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "wave_gen",
-            "type": "shell",
-            "command": "gcc",
-            "args": ["-g", "wave_gen.c", "src/dtmf.c", "src/wave.c","-lm"]
-        },
-        
+    "tasks": [        
         {
             "label": "build",
             "type": "shell",
             "command": "gcc",
-            "args": ["-g", "testdtmf.c", "src/dtmf.c", "src/wave.c","-lm"]
+            "args": ["-g", "testdtmf.c", "src/dtmf.c", "src/wave.c","-lm"], 
         }
 
     ]

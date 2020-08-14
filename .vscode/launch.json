@@ -8,7 +8,7 @@
             "name": "gcc - アクティブ ファイルのビルドとデバッグ",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${fileDirname}/a.out",
+            "program": "${fileDirname}/wave",
             "args": ["hoge.wave"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

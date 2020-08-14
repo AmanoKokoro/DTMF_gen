@@ -1,6 +1,10 @@
 #include "src/dtmf.h"
+#include <stdlib.h>
 
 void main(void) {
 
-    DTMFGen(0);
+    unsigned char *dtmf = NULL; 
+
+    dtmf  = DTMFGen(0);
+    //free(dtmf);
 }

@@ -12,7 +12,7 @@
 #define SAMPLESIZE 31965
 
 /*Func*/
-void DTMFGen(int);
+char* DTMFGen(int);
 Sound DTMFWaveSet();
 
 

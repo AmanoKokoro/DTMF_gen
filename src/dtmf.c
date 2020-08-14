@@ -21,13 +21,14 @@ static unsigned char dtmf_num[10][2] = {
     {2, 2}
 };
 
-unsigned char wavedt[DATASIZE];
+signed char wavedt[DATASIZE];
 
-void DTMFGen(int num)
+char* DTMFGen(int num)
 {
     unsigned long loop;
-    signed short amplitude = 1;
-    Sound low, high;
+    signed short amplitude = 100;
+    Sound low;
+    Sound high;
 
     low = DTMFWaveSet();
     high = DTMFWaveSet();
@@ -53,9 +54,15 @@ void DTMFGen(int num)
              (sin(2 * M_PI * low_rate[dtmf_num[num][LOW]]* ((double)loop/low.samplingrate)) +
               sin(2 * M_PI * high_rate[dtmf_num[num][HIGH]]* ((double)loop/high.samplingrate)));
 
-        printf("%f\n", (sin(2 * M_PI * low_rate[dtmf_num[num][LOW]]* ((double)loop/low.samplingrate)) +
-              sin(2 * M_PI * high_rate[dtmf_num[num][HIGH]]* ((double)loop/high.samplingrate))));
+        printf("%d ≒ %f = %d * %f \n", wavedt[loop], amplitude * sin(2 * M_PI * low_rate[dtmf_num[num][LOW]]* ((double)loop/low.samplingrate)) +
+              sin(2 * M_PI * high_rate[dtmf_num[num][HIGH]]* ((double)loop/high.samplingrate)), amplitude, sin(2 * M_PI * low_rate[dtmf_num[num][LOW]]* ((double)loop/low.samplingrate)) +
+              sin(2 * M_PI * high_rate[dtmf_num[num][HIGH]]* ((double)loop/high.samplingrate)));
     }
+
+    Free_Sound(&low);
+    Free_Sound(&high);
+
+    return wavedt;
 }
 
 
