@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void main(int argc, char *argv[]) {
+void main(int argc, char *argv[])
+{
     Sound dtmf_signal;
 
     printf("\ninput = 0\n");

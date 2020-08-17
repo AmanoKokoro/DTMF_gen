@@ -12,6 +12,7 @@
 
 /*Func*/
 Sound DTMFGen(int);
+void PauseGen();
 Sound DTMFWaveSet();
 
 
@@ -22,4 +23,4 @@ Sound DTMFWaveSet();
 #ifndef M_PI
 #define M_PI (3.14159265358979323846)
 
-#endif
+#endif //M_PI

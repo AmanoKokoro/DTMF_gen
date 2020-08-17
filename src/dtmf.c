@@ -2,6 +2,7 @@
 #include <math.h>
 
 #define DATASIZE 1311
+#define PAUSESIZE 820
 #define LOW 0
 #define HIGH 1
 
@@ -22,18 +23,25 @@ static unsigned char dtmf_num[10][2] = {
 };
 
 signed char wavedt[DATASIZE];
+signed char pausedt[PAUSESIZE];
 
+//DTMFGen 
+//合成したSound型構造体を返す
+//引数numで受け取った数字のDTMF信号を、Sound型構造体 low, highを足すことで生成する
+//ampは100(char_MAX = 255 に収めるため)
+//イメージ重視でSound型構造体を使いまわさず、low,high, reverseを作る
+//※（無駄とか言わない、1ヶ月後の自分が見て追えるように）
 Sound DTMFGen(int num)
 {
     unsigned long loop;
     signed short amplitude = 100;
     Sound low;
     Sound high;
-    Sound signal;
+    Sound reverse_signal;
 
     low = DTMFWaveSet();
     high = DTMFWaveSet();
-    signal = DTMFWaveSet();
+    reverse_signal = DTMFWaveSet();
 
     printf("Low INFO\n");
 	printf("channelnum = %d\n", low.channelnum);
@@ -57,10 +65,21 @@ Sound DTMFGen(int num)
               sin(2 * M_PI * high_rate[dtmf_num[num][HIGH]]* ((double)loop/high.samplingrate)));
     }
 
-    return signal;
+    return reverse_signal;
 }
 
+void PauseGen()
+{
+    unsigned int loop;
+    Sound pause;
+    
+    for(loop=0;loop<PAUSESIZE;loop++){
+        pausedt[loop] = 0;
+    }
 
+}
+
+//DTMF初期設定関数
 //Channel = 1 条件よりモノラル
 //SamplingRate = 16384 fmax = 1633[Hz] * 2(最小限) *5(課題の条件)  = 16330 fmaxの以上で2の累乗の近似値を使う 
 //Bit_per_sample = 8 条件より8[bit/sample]
@@ -74,6 +93,9 @@ Sound  DTMFWaveSet()
     snd.bit_per_sample = 8;
     snd.datanum = DATASIZE;
     snd.monaural8 = wavedt;
+    snd.monaural16 = NULL;
+	snd.stereo8 = NULL;
+	snd.stereo16 = NULL;
 
     return snd;
 }
