@@ -1,10 +1,16 @@
 #include "src/dtmf.h"
 #include <stdlib.h>
+#include <stdio.h>
 
-void main(void) {
+void main(int argc, char *argv[]) {
+    Sound dtmf_signal;
 
-    unsigned char *dtmf = NULL; 
+    printf("\ninput = 0\n");
 
-    dtmf  = DTMFGen(0);
-    //free(dtmf);
+    dtmf_signal = DTMFWaveSet();
+    dtmf_signal = DTMFGen(0);
+
+    Write_Wave(argv[1], &dtmf_signal);
+
+    Free_Sound(&dtmf_signal);
 }

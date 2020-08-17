@@ -2,7 +2,6 @@
 #define __DTMF_H
 
 /*Header*/
-#define _USE_MATH_DEFINES
 #include <math.h>
 #include <stdio.h>
 #include "wave.h"
@@ -12,10 +11,15 @@
 #define SAMPLESIZE 31965
 
 /*Func*/
-char* DTMFGen(int);
+Sound DTMFGen(int);
 Sound DTMFWaveSet();
 
 
 /**/
 
 #endif // __DTMF_H
+
+#ifndef M_PI
+#define M_PI (3.14159265358979323846)
+
+#endif
