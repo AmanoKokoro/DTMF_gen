@@ -6,7 +6,6 @@
 #include <stdio.h>
 #include "wave.h"
 
-
 /*define macro*/
 #define SAMPLESIZE 31965
 
@@ -14,10 +13,6 @@
 Sound DTMFGen(int);
 void PauseGen();
 Sound DTMFWaveSet();
-
-
-/**/
-
 #endif // __DTMF_H
 
 #ifndef M_PI

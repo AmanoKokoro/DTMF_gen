@@ -19,13 +19,12 @@ static unsigned char dtmf_num[10][2] = {
     {1, 2},
     {2, 0},
     {2, 1},
-    {2, 2}
-};
+    {2, 2}};
 
-signed char wavedt[DATASIZE];
-signed char pausedt[PAUSESIZE];
+signed char wavedt[DATASIZE] = {0};
+signed char pausedt[PAUSESIZE] = {0};
 
-//DTMFGen 
+//DTMFGen
 //合成したSound型構造体を返す
 //引数numで受け取った数字のDTMF信号を、Sound型構造体 low, highを足すことで生成する
 //ampは100(char_MAX = 255 に収めるため)
@@ -39,63 +38,66 @@ Sound DTMFGen(int num)
     Sound high;
     Sound reverse_signal;
 
-    low = DTMFWaveSet();
-    high = DTMFWaveSet();
-    reverse_signal = DTMFWaveSet();
+    low = DTMFWaveSet(DATASIZE, wavedt);
+    high = DTMFWaveSet(DATASIZE, wavedt);
+    reverse_signal = DTMFWaveSet(DATASIZE, wavedt);
 
     printf("Low INFO\n");
-	printf("channelnum = %d\n", low.channelnum);
-	printf("samplingrate = %ld\n",low.samplingrate);
-	printf("bit_per_sample = %d\n",low.bit_per_sample);
-	printf("datanum = %ld\n",low.datanum);
-	printf("freq = %ld\n",low_rate[dtmf_num[num][LOW]]);
-	printf("amplitude = %d\n",amplitude);
+    printf("channelnum = %d\n", low.channelnum);
+    printf("samplingrate = %ld\n", low.samplingrate);
+    printf("bit_per_sample = %d\n", low.bit_per_sample);
+    printf("datanum = %ld\n", low.datanum);
+    printf("freq = %ld\n", low_rate[dtmf_num[num][LOW]]);
+    printf("amplitude = %d\n", amplitude);
 
-	printf("High INFO\n");
-	printf("channelnum = %d\n",high.channelnum);
-	printf("samplingrate = %ld\n",high.samplingrate);
-	printf("bit_per_sample = %d\n",high.bit_per_sample);
-	printf("datanum = %ld\n",high.datanum);
-	printf("freq = %ld\n",high_rate[dtmf_num[num][HIGH]]);
-	printf("amplitude = %d\n",amplitude);
+    printf("High INFO\n");
+    printf("channelnum = %d\n", high.channelnum);
+    printf("samplingrate = %ld\n", high.samplingrate);
+    printf("bit_per_sample = %d\n", high.bit_per_sample);
+    printf("datanum = %ld\n", high.datanum);
+    printf("freq = %ld\n", high_rate[dtmf_num[num][HIGH]]);
+    printf("amplitude = %d\n", amplitude);
 
-    for(loop=0;loop<DATASIZE;loop++){
+    for (loop = 0; loop < DATASIZE; loop++)
+    {
         wavedt[loop] = amplitude *
-             (sin(2 * M_PI * low_rate[dtmf_num[num][LOW]]* ((double)loop/low.samplingrate)) +
-              sin(2 * M_PI * high_rate[dtmf_num[num][HIGH]]* ((double)loop/high.samplingrate)));
+                       (sin(2 * M_PI * low_rate[dtmf_num[num][LOW]] * ((double)loop / low.samplingrate)) +
+                        sin(2 * M_PI * high_rate[dtmf_num[num][HIGH]] * ((double)loop / high.samplingrate)));
     }
 
     return reverse_signal;
 }
 
+//ポーズ作成関数
+//PAUSESIZE分0で埋めた配列を作成する
 void PauseGen()
 {
     unsigned int loop;
     Sound pause;
-    
-    for(loop=0;loop<PAUSESIZE;loop++){
+
+    for (loop = 0; loop < PAUSESIZE; loop++)
+    {
         pausedt[loop] = 0;
     }
-
 }
 
 //DTMF初期設定関数
 //Channel = 1 条件よりモノラル
-//SamplingRate = 16384 fmax = 1633[Hz] * 2(最小限) *5(課題の条件)  = 16330 fmaxの以上で2の累乗の近似値を使う 
+//SamplingRate = 16384 fmax = 1633[Hz] * 2(最小限) *5(課題の条件)  = 16330 fmaxの以上で2の累乗の近似値を使う
 //Bit_per_sample = 8 条件より8[bit/sample]
 //Datanum = 1311 信号音 0.08[sec] * 16384 = 1311[sample]
-Sound  DTMFWaveSet()
+Sound DTMFWaveSet(unsigned long size, unsigned char* wavearray)
 {
     Sound snd;
 
     snd.channelnum = 1;
     snd.samplingrate = 16384;
     snd.bit_per_sample = 8;
-    snd.datanum = DATASIZE;
-    snd.monaural8 = wavedt;
+    snd.datanum = size;
+    snd.monaural8 = wavearray;
     snd.monaural16 = NULL;
-	snd.stereo8 = NULL;
-	snd.stereo16 = NULL;
+    snd.stereo8 = NULL;
+    snd.stereo16 = NULL;
 
     return snd;
 }
