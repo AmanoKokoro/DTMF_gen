@@ -8,8 +8,8 @@ void main(int argc, char *argv[])
 
     printf("\ninput = 0\n");
 
-    dtmf_signal = DTMFWaveSet();
-    dtmf_signal = DTMFGen(0);
+    // dtmf_signal = DTMFWaveSet();
+    // dtmf_signal = DTMFGen(0);
 
     Write_Wave(argv[1], &dtmf_signal);
 

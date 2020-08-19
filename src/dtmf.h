@@ -6,20 +6,19 @@
 #include <stdio.h>
 #include "wave.h"
 
-
 /*define macro*/
 #define DATACHANCSIZE 31965
 #define DATASIZE 1311
 #define PAUSESIZE 820
+#define DIGIT 15
 #define SAMPLINGRATE 16384
 #define LOW 0
 #define HIGH 1
 
-
 /*Func*/
-void dtmfgen(char , char*);
-void pausegen(char*);
-Sound dtmfwaveset(char*);
+void dtmfgen(char, char *);
+void pausegen(char *);
+Sound dtmfwaveset(char *);
 
 #endif // __DTMF_H
 
