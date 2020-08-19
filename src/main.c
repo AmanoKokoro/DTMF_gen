@@ -1,33 +1,33 @@
+#include "dtmf.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//#include "dtmf.h"
 
-#define MAXDIGIT 15
 
-void gethelp();
+void help();
 
-void test(char* text, int innum){
-	printf("%s\n", text);
-	printf("%d\n", innum);
-}
+int main(int argv, char* argc[])
+{
+	Sound dtmf;
+	int num;
+	int digit = 15;
 
-int main(int argc, char *argv[]) {
-	int dtmfnum;
-
-	if (argc != 3 || strstr(argv[1], ".wav") == NULL || strstr(argv[1], "-h")){
-		gethelp();
-		return 1;
+	if (argv != 3 || strstr(argc[2], ".wav") || strstr(argc[1], "-h"))
+	{
+		help();
 	}
 
-	dtmfnum = atoi(argv[2]);
-	test(argv[1], dtmfnum);
-	
+	num = atoi(argc[1]);
+
+	dtmf = dtmfwaveset();
+
 	return 0;
 }
 
-void gethelp(void) {
-	printf("Usage: cre_dtmf [Options] [Output File name] [number]...\n\n");
-	printf("OPTION\t\tLong Option\tExplantion\n");
-	printf("-h\t\t--help\t\tShow help and exit\n");
+void help()
+{
+	printf("Usage\n");
+	printf("DTMF_gen [NUMBER] [OUTPUTFILE]\n\n");
+	printf("OPTIONS\n");
+	printf("-h\tPrint this help.");
 }
