@@ -21,6 +21,7 @@ int main(int argc, char *argv[])
 		memcat(wavedt, pausedt, PAUSESIZE);
 	}
 
+	//出来上がったDTMF信号の配列でSound型構造体を作成
 	dtmf = dtmfwaveset(wavedt);
 
 	if(Write_Wave(argv[2], &dtmf))
