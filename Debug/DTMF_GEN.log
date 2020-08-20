@@ -1,5 +1,0 @@
-﻿  dtmf.c
-C:\Users\cc494\source\repos\DTMF_GEN\src\dtmf.c(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
-C:\Users\cc494\source\repos\DTMF_GEN\src\wave.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
-C:\Users\cc494\source\repos\DTMF_GEN\src\dtmf.c(44,96): warning C4244: '=': 'double' から 'char' への変換です。データが失われる可能性があります。
-  DTMF_GEN.vcxproj -> C:\Users\cc494\source\repos\DTMF_GEN\Debug\DTMF_GEN.exe

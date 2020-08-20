@@ -1,2 +1,0 @@
-C:\Users\cc494\source\repos\DTMF_GEN\Debug\DTMF_GEN.exe
-C:\Users\cc494\source\repos\DTMF_GEN\Debug\DTMF_GEN.pdb

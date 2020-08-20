@@ -1,1 +1,0 @@
-/bin/c99-gcc -g  -rdynamic CMakeFiles/dtmf_gen.dir/src/main.c.o CMakeFiles/dtmf_gen.dir/src/dtmf.c.o CMakeFiles/dtmf_gen.dir/src/wave.c.o  -o dtmf_gen  -lm 
