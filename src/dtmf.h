@@ -8,15 +8,18 @@
 
 
 /*define macro*/
-#define SAMPLESIZE 31965
+#define DATACHANCSIZE 31965
+#define DATASIZE 1311
+#define PAUSESIZE 820
+#define SAMPLINGRATE 16384
+#define LOW 0
+#define HIGH 1
+
 
 /*Func*/
-Sound DTMFGen(int);
-void PauseGen();
-Sound DTMFWaveSet();
-
-
-/**/
+void dtmfgen(char , char*);
+void pausegen(char*);
+Sound dtmfwaveset(char*);
 
 #endif // __DTMF_H
 

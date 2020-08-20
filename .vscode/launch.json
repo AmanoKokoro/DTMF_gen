@@ -8,7 +8,7 @@
             "name": "gcc - アクティブ ファイルのビルドとデバッグ",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${fileDirname}/build/testdtmf",
+            "program": "/home/amanokokoro/DTMF_GEN/a.out",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
