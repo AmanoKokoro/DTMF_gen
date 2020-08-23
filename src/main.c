@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 	dtmf.stereo8 = NULL;
 	dtmf.stereo16 = NULL;
 
-	for (char loop = 0; loop < DIGIT; loop++)
+	for (char loop = 0; argv[1][loop] != '\0'; loop++)
 	{
 		dtmfgen(argv[1][loop], datadt); /*一桁ごとに信号を生成*/
 
@@ -44,5 +44,5 @@ int main(int argc, char *argv[])
 void help()
 {
 	printf("Usage\n");
-	printf("DTMF_gen [NUMBER] [OUTPUTFILE]\n\n");
+	printf("DTMF_gen [NUMBER] [OUTPUTFILENAME]\n\n");
 }

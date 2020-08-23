@@ -1,6 +1,6 @@
 # DTMF_gen
-This repository is generate dtmf signal.
-Bat, This is still incomplete.
+This repository is generate dtmf signal's .wav File.
+Enter any number in decimal.
 
 # Note
 
@@ -12,6 +12,8 @@ Use This Page's "wave.c" and "wave.h"
 ```
 $ cd DTMF_gen
 ```
+
+## Use CMake
 ```
 $ mkdir build 
 ```
@@ -21,3 +23,15 @@ $ cd build && cmake ..
 ```
 $ make
 ```
+
+## Non CMake
+```
+$ cd src
+```
+```
+$ gcc main.c dtmf.c wave.c -lm -o dtmf_gen
+```
+
+# Exec
+```
+$ ./dtmf_gen [NUMBER] [OUTPUTFILENAME]

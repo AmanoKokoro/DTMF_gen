@@ -4,3 +4,4 @@ src/main_gen*
 /build
 /DTMF_GEN*
 *.wav
+test*
