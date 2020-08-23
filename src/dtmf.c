@@ -35,13 +35,22 @@ void dtmfgen(char num, unsigned char wavedt[DATASIZE])
 
 		lowwave = sin(2 * M_PI * low_rate[dtmf_num[num][LOW]] * ((double)loop / SAMPLINGRATE));
 		highwave = sin(2 * M_PI * high_rate[dtmf_num[num][HIGH]] * ((double)loop / SAMPLINGRATE));
-		signal = lowwave + highwave;
-		signal = amplitude * signal;
-
-		if (signal < 0) {
-			signal = signal * (-1);
-		}
+		signal = (lowwave + highwave + 2) * amplitude;
+		//signal = amplitude * signal;
 
 		wavedt[loop] = (unsigned char )signal;
+	}
+}
+
+//argcat
+//配列結合関数dstにsrcを追加する関数
+//dstは書き換えられる
+void argcat(unsigned char dst[], unsigned char src[], unsigned int limit)
+{
+	static unsigned long dstloop = 0;
+	unsigned long srcloop;
+	for (srcloop = 0; srcloop < limit; dstloop++, srcloop++)
+	{
+		dst[dstloop] = src[srcloop];
 	}
 }

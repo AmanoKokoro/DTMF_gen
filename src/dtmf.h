@@ -18,6 +18,8 @@
 
 /*Func*/
 void dtmfgen(char, unsigned char*);
+void argcat(unsigned char*, unsigned char*, unsigned int);
+
 
 #endif // __DTMF_H
 

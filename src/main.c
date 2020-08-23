@@ -4,7 +4,7 @@ int main(int argc, char* argv[])
 {
 	Sound dtmf;						   //Sound型構造体
 	unsigned char wavedt[DATACHANCSIZE]; //Sound型dtmfに渡す15桁のDTMF信号のデータが入る配列
-	unsigned char datadt[DATASIZE] = { 0 };	   //[n桁目の数字][]
+	unsigned char datadt[DATASIZE] = { 0 };	   //[n桁目の数字]
 	unsigned char pausedt[PAUSESIZE] = { 0 };
 
 	if (argc != 3)
@@ -27,13 +27,13 @@ int main(int argc, char* argv[])
 	for (char loop = 0; loop < DIGIT; loop++)
 	{
 		dtmfgen(argv[1][loop], datadt);
-		memcat(wavedt, datadt, DATASIZE);
-		memcat(wavedt, pausedt, PAUSESIZE);
+		argcat(wavedt, datadt, DATASIZE);
+		argcat(wavedt, pausedt, PAUSESIZE);
 	}
 
 	if (Write_Wave(argv[2], &dtmf))
 	{
-		Free_Sound(&dtmf);
+		//Free_Sound(&dtmf);
 		return 1;
 	}
 
@@ -47,17 +47,4 @@ void help()
 {
 	printf("Usage\n");
 	printf("DTMF_gen [NUMBER] [OUTPUTFILE]\n\n");
-}
-
-//memcat
-//配列結合関数dstにsrcを追加する関数
-//dstは書き換えられる
-void memcat(unsigned char dst[], unsigned char src[], unsigned int limit)
-{
-	static unsigned long dstloop = 0;
-	unsigned long srcloop;
-	for (srcloop = 0; srcloop < limit; dstloop++, srcloop++)
-	{
-		dst[dstloop] = src[srcloop];
-	}
 }
