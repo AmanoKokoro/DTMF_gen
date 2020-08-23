@@ -1,11 +1,11 @@
 #include "main.h"
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
 	Sound dtmf;						   //Sound型構造体
-	signed char wavedt[DATACHANCSIZE]; //Sound型dtmfに渡す15桁のDTMF信号のデータが入る配列
-	signed char datadt[DATASIZE];	   //[n桁目の数字][]
-	signed char pausedt[PAUSESIZE] = { 0 };
+	unsigned char wavedt[DATACHANCSIZE]; //Sound型dtmfに渡す15桁のDTMF信号のデータが入る配列
+	unsigned char datadt[DATASIZE] = { 0 };	   //[n桁目の数字][]
+	unsigned char pausedt[PAUSESIZE] = { 0 };
 
 	if (argc != 3)
 	{
@@ -31,13 +31,13 @@ int main(int argc, char *argv[])
 		memcat(wavedt, pausedt, PAUSESIZE);
 	}
 
-	if(Write_Wave(argv[2], &dtmf))
+	if (Write_Wave(argv[2], &dtmf))
 	{
 		Free_Sound(&dtmf);
 		return 1;
 	}
 
-	Free_Sound(&dtmf);
+	//Free_Sound(&dtmf);
 	return 0;
 }
 
@@ -52,7 +52,7 @@ void help()
 //memcat
 //配列結合関数dstにsrcを追加する関数
 //dstは書き換えられる
-void memcat(char dst[], char src[], unsigned int limit)
+void memcat(unsigned char dst[], unsigned char src[], unsigned int limit)
 {
 	static unsigned long dstloop = 0;
 	unsigned long srcloop;

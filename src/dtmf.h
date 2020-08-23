@@ -17,9 +17,7 @@
 
 
 /*Func*/
-void dtmfgen(char , char*);
-void pausegen(char*);
-Sound dtmfwaveset(char*);
+void dtmfgen(char, unsigned char*);
 
 #endif // __DTMF_H
 

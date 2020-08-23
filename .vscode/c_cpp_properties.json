@@ -11,7 +11,11 @@
             "cppStandard": "gnu++14",
             "intelliSenseMode": "clang-x64",
             "compileCommands": "${workspaceFolder}/build/compile_commands.json",
+<<<<<<< HEAD
             "configurationProvider": "go2sh.cmake-integration"
+=======
+            "configurationProvider": "ms-vscode.cmake-tools"
+>>>>>>> e65bd4d1445674b73db4ede76a47e799b4fad0e3
         }
     ],
     "version": 4

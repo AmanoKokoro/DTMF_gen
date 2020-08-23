@@ -9,6 +9,6 @@
 #define DIGIT 15
 
 void help();
-void memcat(char *, char *, unsigned int);
+void memcat(unsigned char*, unsigned char*, unsigned int);
 
 #endif //__MAIN_H
