@@ -6,24 +6,23 @@
 #include <stdio.h>
 #include "wave.h"
 
-
 /*define macro*/
 #define DATACHANCSIZE 31965
-#define DATASIZE 1311
+#define SIGNALSIZE 1311
 #define PAUSESIZE 820
 #define SAMPLINGRATE 16384
 #define LOW 0
 #define HIGH 1
 
-
 /*Func*/
-void dtmfgen(char, unsigned char*);
-void argcat(unsigned char*, unsigned char*, unsigned int);
+/*0~9の1音のDTMFを作成する*/
+void dtmfgen(char, unsigned char *);
+/*配列に配列を結合する*/
+void argcat(unsigned char *, unsigned char *, unsigned int);
 
-
-#endif // __DTMF_H
+#endif /*__DTMF_H*/
 
 #ifndef M_PI
 #define M_PI (3.14159265358979323846)
 
-#endif //M_PI
+#endif /*M_PI*/

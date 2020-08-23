@@ -1,18 +1,18 @@
 #include "main.h"
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
-	Sound dtmf;						   //Sound型構造体
-	unsigned char wavedt[DATACHANCSIZE]; //Sound型dtmfに渡す15桁のDTMF信号のデータが入る配列
-	unsigned char datadt[DATASIZE] = { 0 };	   //[n桁目の数字]
-	unsigned char pausedt[PAUSESIZE] = { 0 };
+	Sound dtmf;								  /*Sound型構造体*/
+	unsigned char wavedt[DATACHANCSIZE];	  /*Sound型dtmfに渡す15桁のDTMF信号のデータが入る配列*/
+	unsigned char datadt[SIGNALSIZE] = {0};	  /*[n桁目の数字]*/
+	unsigned char pausedt[PAUSESIZE] = {128}; /*ポーズ 8bitモノラルでは無音を128で表すため、これが初期値*/
 
 	if (argc != 3)
 	{
 		help();
 	}
 
-	//Sound Object set
+	/*Sound Object set*/
 	dtmf.channelnum = 1;
 	dtmf.samplingrate = SAMPLINGRATE;
 	dtmf.bit_per_sample = 8;
@@ -22,27 +22,25 @@ int main(int argc, char* argv[])
 	dtmf.stereo8 = NULL;
 	dtmf.stereo16 = NULL;
 
-	//pausegen(pausedt);
-
 	for (char loop = 0; loop < DIGIT; loop++)
 	{
-		dtmfgen(argv[1][loop], datadt);
-		argcat(wavedt, datadt, DATASIZE);
+		dtmfgen(argv[1][loop], datadt); /*一桁ごとに信号を生成*/
+
+		/*以下生成した信号とポーズを一つの配列にまとめる処理*/
+		argcat(wavedt, datadt, SIGNALSIZE);
 		argcat(wavedt, pausedt, PAUSESIZE);
 	}
 
-	if (Write_Wave(argv[2], &dtmf))
+	/*正常終了以外でエラー*/
+	if (Write_Wave(argv[2], &dtmf) != 0)
 	{
-		//Free_Sound(&dtmf);
 		return 1;
 	}
 
-	//Free_Sound(&dtmf);
 	return 0;
 }
-
-//Help
-//Help表示関数
+/*void help()*/
+/*Help表示関数*/
 void help()
 {
 	printf("Usage\n");

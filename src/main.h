@@ -8,6 +8,7 @@
 
 #define DIGIT 15
 
+/*ヘルプの表示*/
 void help();
 
 #endif //__MAIN_H
