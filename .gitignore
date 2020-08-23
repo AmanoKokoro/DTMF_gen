@@ -1,0 +1,6 @@
+src/wave*
+src/main_gen*
+/Debug
+/build
+/DTMF_GEN*
+*.wav
