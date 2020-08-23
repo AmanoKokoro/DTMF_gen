@@ -12,7 +12,9 @@
                 "src/main.c",
                 "src/dtmf.c",
                 "src/wave.c",
-                "-lm"
+                "-lm",
+                "-o",
+                "dtmf_gen"
             ],
             "problemMatcher": []
         }
